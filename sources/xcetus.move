@@ -9,15 +9,15 @@ module xcetus::xcetus {
   use sui::tx_context;
   use sui::url;
   
-  struct XCETUS has drop {
+  public struct XCETUS has drop {
     dummy_field: bool
   }
 
-  struct AdminCap has store, key {
+  public struct AdminCap has store, key {
     id: UID
   }
 
-  struct XcetusManager has key {
+  public struct XcetusManager has key {
     id: UID,
     index: u64,
     has_venft: Table<address, bool>,
@@ -26,13 +26,13 @@ module xcetus::xcetus {
     total_locked: u64
   }
 
-  struct VeNftInfo has drop, store {
+  public struct VeNftInfo has drop, store {
     id: ID,
     xcetus_amount: u64,
     lock_amount: u64
   }
 
-  struct VeNFT has key {
+  public struct VeNFT has key {
     id: UID,
     index: u64,
     xcetus_balance: Balance<XCETUS>

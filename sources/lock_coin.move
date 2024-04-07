@@ -8,7 +8,7 @@ module xcetus::lock_coin {
   use sui::transfer;
   use sui::tx_context;
  
-  struct LockedCoin<phantom T> has key {
+  public struct LockedCoin<phantom T> has key {
     id: UID,
     balance: Balance<T>,
     locked_start_time: u64,
