@@ -1,23 +1,23 @@
 module xcetus::xcetus {
+  use move_stl::linked_table::LinkedTable;
   use std::option;
-  use sui::balance;
-  use sui::coin;
-  use sui::event;
-  use sui::object;
-  use sui::table;
+  use sui::balance::{Self, Balance};
+  use sui::coin::{Self, TreasuryCap, Coin};
+  use sui::object::{Self, ID, UID};
+  use sui::table::{Self, Table};
   use sui::transfer;
-  use sui::tx_context;
+  use sui::tx_context::{Self, TxContext};
   use sui::url;
   
-  public struct XCETUS has drop {
+  struct XCETUS has drop {
     dummy_field: bool
   }
 
-  public struct AdminCap has store, key {
+  struct AdminCap has store, key {
     id: UID
   }
 
-  public struct XcetusManager has key {
+  struct XcetusManager has key {
     id: UID,
     index: u64,
     has_venft: Table<address, bool>,
@@ -26,76 +26,76 @@ module xcetus::xcetus {
     total_locked: u64
   }
 
-  public struct VeNftInfo has drop, store {
+  struct VeNftInfo has drop, store {
     id: ID,
     xcetus_amount: u64,
     lock_amount: u64
   }
 
-  public struct VeNFT has key {
+  struct VeNFT has key {
     id: UID,
     index: u64,
     xcetus_balance: Balance<XCETUS>
   }
   
-  init(Arg0: XCETUS, Arg1: &mut TxContext) {
+  fun init(arg0: XCETUS, arg1: &mut TxContext) {
     abort 0
   }
 
-  new_venft(Arg0: u64, Arg1: &mut TxContext): VeNFT {
+  fun new_venft(arg0: u64, arg1: &mut TxContext): VeNFT {
+    abort 0
+  }
+ 
+  public(friend) fun update_locked(arg0: &mut XcetusManager, arg1: &VeNFT, arg2: u64) {
     abort 0
   }
 
-  public(friend) update_locked(Arg0: &mut XcetusManager, Arg1: &VeNFT, Arg2: u64) {
+  public(friend) fun update_unlocked(arg0: &mut XcetusManager, arg1: &VeNFT, arg2: u64) {
     abort 0
   }
-
-  public(friend) update_unlocked(Arg0: &mut XcetusManager, Arg1: &VeNFT, Arg2: u64) {
+  public fun mint_venft(arg0: &mut XcetusManager, arg1: &mut TxContext): ID {
     abort 0
   }
-  public mint_venft(Arg0: &mut XcetusManager, Arg1: &mut TxContext): ID {
+  public(friend) fun mint_venft_object(arg0: &mut XcetusManager, arg1: &mut TxContext): VeNFT {
     abort 0
   }
-  public(friend) mint_venft_object(Arg0: &mut XcetusManager, Arg1: &mut TxContext): VeNFT {
+  public(friend) fun transfer_venft(arg0: VeNFT, arg1: &mut TxContext) {
     abort 0
   }
-  public(friend) transfer_venft(Arg0: VeNFT, Arg1: &mut TxContext) {
+  public fun burn_venft(arg0: &mut XcetusManager, arg1: VeNFT, arg2: &mut TxContext) {
     abort 0
   }
-  public burn_venft(Arg0: &mut XcetusManager, Arg1: VeNFT, Arg2: &mut TxContext) {
+  public(friend) fun mint(arg0: &mut XcetusManager, arg1: &mut VeNFT, arg2: u64) {
     abort 0
   }
-  public(friend) mint(Arg0: &mut XcetusManager, Arg1: &mut VeNFT, Arg2: u64) {
+  public(friend) fun burn(arg0: &mut XcetusManager, arg1: &mut VeNFT, arg2: u64, arg3: &mut TxContext) {
     abort 0
   }
-  public(friend) burn(Arg0: &mut XcetusManager, Arg1: &mut VeNFT, Arg2: u64, Arg3: &mut TxContext) {
+  public entry fun burn_by_admin(arg0: &AdminCap, arg1: &mut XcetusManager, arg2: &mut VeNFT, arg3: u64, arg4: &mut TxContext) {
     abort 0
   }
-  entry public burn_by_admin(Arg0: &AdminCap, Arg1: &mut XcetusManager, Arg2: &mut VeNFT, Arg3: u64, Arg4: &mut TxContext) {
+  public fun xcetus_amount(arg0: &VeNftInfo): u64 {
     abort 0
   }
-  public xcetus_amount(Arg0: &VeNftInfo): u64 {
+  public fun lock_amount(arg0: &VeNftInfo): u64 {
     abort 0
   }
-  public lock_amount(Arg0: &VeNftInfo): u64 {
+  public fun value(arg0: &XcetusManager, arg1: &VeNFT): u64 {
     abort 0
   }
-  public value(Arg0: &XcetusManager, Arg1: &VeNFT): u64 {
+  public fun available_value(arg0: &XcetusManager, arg1: &VeNFT): u64 {
     abort 0
   }
-  public available_value(Arg0: &XcetusManager, Arg1: &VeNFT): u64 {
+  public fun totol_amount(arg0: &XcetusManager): u64 {
     abort 0
   }
-  public totol_amount(Arg0: &XcetusManager): u64 {
+  public fun total_locked(arg0: &XcetusManager): u64 {
     abort 0
   }
-  public total_locked(Arg0: &XcetusManager): u64 {
+  public fun total_holder(arg0: &XcetusManager): u64 {
     abort 0
   }
-  public total_holder(Arg0: &XcetusManager): u64 {
-    abort 0
-  }
-  public nfts(Arg0: &XcetusManager): &LinkedTable<ID, VeNftInfo> {
+  public fun nfts(arg0: &XcetusManager): &LinkedTable<ID, VeNftInfo> {
     abort 0
   }
 }
