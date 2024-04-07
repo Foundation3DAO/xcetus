@@ -1,5 +1,4 @@
 module xcetus::xcetus {
-  use be21a06129308e0495431d12286127897aff07a8ade3970495a4404d97f9eaaa::linked_table;
   use std::option;
   use sui::balance;
   use sui::coin;
